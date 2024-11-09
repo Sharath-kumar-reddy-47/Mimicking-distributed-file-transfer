@@ -9,7 +9,7 @@ import matplotlib as plt
 lock = threading.Lock()
 
 # Define the server address and port
-server_ip = '10.194.'
+server_ip = '10.194.39.38'
 server_port = 2838
 
 # Create a socket object
@@ -56,7 +56,7 @@ def receive_from_vayu():
                 dic[lines[0]] = lines[1]
                 buffer.add(l)
         with lock:
-            if len(buffer) >= 10:
+            if len(buffer) >= 1000:
                 c = 0
                 msg = 'SUBMIT\n'
                 vayu_socket.send(msg.encode('utf-8'))
@@ -103,7 +103,7 @@ def handle_client(conn, addr):
         print(length)
         print(buffer)
         with lock:
-            if length >= 10:
+            if length >= 1000:
                 response_message = b'0'
                 conn.send(response_message)
                 pickle_data = pickle.dumps(dic)
@@ -151,13 +151,13 @@ server.join()
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(elapsed_time)
-x = [0,1,3]
-y = [4,2,9]
-plt.plot(x, y)
-plt.xlabel('X-axis Label')
-plt.ylabel('Y-axis Label')
-plt.title('Title of the Plot')
-plt.legend(['Line 1'])
-plt.grid(True)
+# x = [0,1,3]
+# y = [4,2,9]
+# plt.plot(x, y)
+# plt.xlabel('X-axis Label')
+# plt.ylabel('Y-axis Label')
+# plt.title('Title of the Plot')
+# plt.legend(['Line 1'])
+# plt.grid(True)
 
-plt.show()  # Display the plot
+# plt.show()  # Display the plot
